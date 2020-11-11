@@ -1,4 +1,5 @@
 import 'package:app/data.dart';
+import 'package:app/widgets/game_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -87,6 +88,10 @@ class _HomeScreenState extends State<HomeScreen> {
           _appBarWidget(),
           SizedBox(height: size.height * .25,),
           _featuredGameInfoWidget(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8,),
+            child: GameListWidget(height: size.height * .25,width: size.width,gameList:games,showTitle: true,),
+          )
         ],
       ),
     );
