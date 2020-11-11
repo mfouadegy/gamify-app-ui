@@ -8,6 +8,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Size size;
+  double _height;
+  double _width;
 
   @override
   void initState() {
@@ -19,10 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
     size = MediaQuery
         .of(context)
         .size;
+    _height=size.height;
+    _width=size.width;
     return Scaffold(
       body: Stack(children: [
         _featuredGames(),
         _backgroundBox(),
+        _topLayer(),
 
       ],),
     );
@@ -64,6 +69,38 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ),
       ),
+    );
+  }
+
+  Widget _topLayer(){
+    return Padding(
+      padding:  EdgeInsets.symmetric(vertical: size.height * .05,horizontal: size.width * .05),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _appBarWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget _appBarWidget(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Icon(Icons.menu,size: 30,color: Colors.white,),
+       Row(
+         children: [
+           Icon(Icons.search,size: 30,color: Colors.white,),
+           SizedBox(width: size.width * .05,),
+           Icon(Icons.notifications_none,size: 30,color: Colors.white,),
+         ],
+       )
+      ],
     );
   }
 }
