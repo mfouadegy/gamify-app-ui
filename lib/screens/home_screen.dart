@@ -1,5 +1,6 @@
 import 'package:app/data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -8,12 +9,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Size size;
-  double _height;
-  double _width;
+  int _selectedIndex;
 
   @override
   void initState() {
     super.initState();
+    _selectedIndex=0;
   }
 
   @override
@@ -21,8 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
     size = MediaQuery
         .of(context)
         .size;
-    _height=size.height;
-    _width=size.width;
     return Scaffold(
       body: Stack(children: [
         _featuredGames(),
@@ -38,6 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
       height: size.height * .50,
       width: size.width,
       child: PageView(
+        onPageChanged: (int index){
+          setState(() {
+            _selectedIndex=index;
+          });
+        },
         scrollDirection: Axis.horizontal,
         children: featuredGames.map((game) {
           return Container(
@@ -81,6 +85,8 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _appBarWidget(),
+          SizedBox(height: size.height * .25,),
+          _featuredGameInfoWidget(),
         ],
       ),
     );
@@ -92,6 +98,13 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        /*SvgPicture.asset(
+            'assets/icons/menu.svg',
+            matchTextDirection: false,
+            color: Colors.white,
+          width: 25,
+          height: 25,
+        ),*/
         Icon(Icons.menu,size: 30,color: Colors.white,),
        Row(
          children: [
@@ -100,6 +113,35 @@ class _HomeScreenState extends State<HomeScreen> {
            Icon(Icons.notifications_none,size: 30,color: Colors.white,),
          ],
        )
+      ],
+    );
+  }
+
+  Widget _featuredGameInfoWidget(){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Text(featuredGames[_selectedIndex].title,maxLines: 2,style: TextStyle(fontSize: 40,),),
+        SizedBox(height: 15,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: featuredGames.map((game) {
+            int currentIndex=featuredGames.indexOf(game);
+            return Container(
+              margin: EdgeInsets.only(right: 2),
+              width: 10,
+              height: 10,
+              decoration: BoxDecoration(
+                color: currentIndex ==_selectedIndex ? Colors.green : Colors.grey,
+                borderRadius: BorderRadius.circular(100)
+              ),
+            );
+          }).toList(),
+        )
       ],
     );
   }
