@@ -1,6 +1,6 @@
 # app
 
-A new Flutter application.
+Flutter Game App UI.
 
 ## Getting Started
 
@@ -14,3 +14,5 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+![Alt text](https://github.com/mfouadegy/gamify-app-ui/blob/main/screenshot/ScreenShot.png?raw=true "Gaming App Home Screen")
