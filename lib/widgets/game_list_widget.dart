@@ -35,10 +35,10 @@ class GameListWidget extends StatelessWidget {
                       image: DecorationImage(image: NetworkImage(game.coverImage.url),fit: BoxFit.cover)
                   ),
                 ),
-                Text(game.title,
+                showTitle ? Text(game.title,
                   maxLines: 2,
                   style: TextStyle(color: Colors.white,fontSize: 16.0,),
-                )
+                ):Container()
               ],
             ),
           );

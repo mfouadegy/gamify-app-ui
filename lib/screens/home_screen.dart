@@ -86,13 +86,14 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _appBarWidget(),
-          SizedBox(height: size.height * .25,),
+          SizedBox(height: size.height * .20,),
           _featuredGameInfoWidget(),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8,),
-            child: GameListWidget(height: size.height * .25,width: size.width,gameList:games,showTitle: true,),
+            child: GameListWidget(height: size.height * .22,width: size.width,gameList:games,showTitle: true,),
           ),
           _featuredGameBanner(),
+          Expanded(child: GameListWidget(width: size.width,height: size.height * .20,gameList: games2,showTitle: false,)),
         ],
       ),
     );
@@ -154,8 +155,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _featuredGameBanner(){
     return Container(
-      height: size.height * .15,
+      height: size.height * .13,
       width: size.width,
+      margin: EdgeInsets.only(bottom: 8,),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(image: NetworkImage(featuredGames[3].coverImage.url),fit: BoxFit.cover,)
