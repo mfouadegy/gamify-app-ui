@@ -91,7 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8,),
             child: GameListWidget(height: size.height * .25,width: size.width,gameList:games,showTitle: true,),
-          )
+          ),
+          _featuredGameBanner(),
         ],
       ),
     );
@@ -148,6 +149,17 @@ class _HomeScreenState extends State<HomeScreen> {
           }).toList(),
         )
       ],
+    );
+  }
+
+  Widget _featuredGameBanner(){
+    return Container(
+      height: size.height * .15,
+      width: size.width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        image: DecorationImage(image: NetworkImage(featuredGames[3].coverImage.url),fit: BoxFit.cover,)
+      ),
     );
   }
 }
