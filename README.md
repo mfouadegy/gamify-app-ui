@@ -1,4 +1,4 @@
-# app
+# Gaming App
 
 Flutter Game App UI.
 
